@@ -1,0 +1,47 @@
+<?php
+// $Id: usersnap.module
+
+/**
+* @file
+* Integrates the Usersnap Web Feedback Tool into Drupal.
+*/
+
+
+
+function usersnap_perm() {
+  return array('usersnap');
+}
+
+
+
+
+
+function usersnap_init() {
+  // Other hook_menu info
+global $user;
+if (user_access('usersnap')) {
+usersnap();
+}
+
+}
+
+
+function usersnap() {
+  // For current user
+    // Doing something special!
+$js="var _usersnapconfig = {
+		apiKey: '2a3bcb8e-f66b-4a0f-9bed-30ea7e8ef478'
+	}; 
+	(function() {
+	    var s = document.createElement('script');
+	    s.type = 'text/javascript';
+	    s.async = true;
+	    s.src = '//api.usersnap.com/usersnap.js';
+	    var x = document.getElementsByTagName('head')[0];
+	    x.appendChild(s);
+	})();
+";
+  drupal_add_js($js,'inline');
+
+  }
+?>

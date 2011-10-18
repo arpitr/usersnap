@@ -1,0 +1,11 @@
+<?php
+// $Id: customsite.install
+
+
+/**
+ * Implementation of hook_uninstall()
+ */
+function customsite_uninstall() {
+  // Remove variables which is defined in our module
+  variable_del('usersnap_apikey');
+}
