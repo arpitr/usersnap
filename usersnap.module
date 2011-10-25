@@ -1,9 +1,8 @@
 <?php
-
 /**
-* @file
-* Integrates the Usersnap Web Feedback Tool into Drupal.
-*/
+ * @file
+ *  Integrates the Usersnap Web Feedback Tool into Drupal.
+ */
 
 
 
@@ -36,7 +35,7 @@ function usersnap_menu() {
     'page arguments' => array('usersnap_admin'),
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
-   );
+  );
 
   return $items;
 }
@@ -51,7 +50,6 @@ function usersnap_perm() {
 
 
 function usersnap_init() {
-  // Other hook_menu info
 global $user;
 if (user_access('usersnap')) {
 add_usersnap();
@@ -61,12 +59,10 @@ add_usersnap();
 
 
 function add_usersnap() {
-  // For current user
-    // Doing something special!
 $apikey=variable_get('usersnap_apikey', '');
 $js="var _usersnapconfig = {
 		apiKey: Drupal.settings.usersnap.apikey
-	}; 
+	};
 	(function() {
 	    var s = document.createElement('script');
 	    s.type = 'text/javascript';
@@ -74,8 +70,7 @@ $js="var _usersnapconfig = {
 	    s.src = '//api.usersnap.com/usersnap.js';
 	    var x = document.getElementsByTagName('head')[0];
 	    x.appendChild(s);
-	})();
-";
+	})();";
   drupal_add_js($js, $type='inline', $scope='footer');
   drupal_add_js(array('usersnap' => array('apikey' => $apikey)), 'setting');
   }
