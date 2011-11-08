@@ -6,7 +6,15 @@
 
 
 
-
+/**
+ * Provides a Configuration Form for entering the Usersnap API Key.
+ *
+ * The API Key can be obtained from http://www.usersnap.com.
+ *
+ * @param
+ *
+ * @return
+ */
 function usersnap_admin() {
   $form = array();
 
