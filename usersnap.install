@@ -1,10 +1,13 @@
 <?php
 /**
  * @file
- *  Uninstall usersnap variable set by usersnap module.
+ * Uninstall variables set by usersnap module.
  */
 
 
+/**
+ * Implements hook_uninstall().
+ */
 function usersnap_uninstall() {
   // Remove the usersnap variable which is defined in our module
   variable_del('usersnap_apikey');

@@ -1,23 +1,16 @@
 <?php
+
 /**
  * @file
- *  Integrates the Usersnap Web Feedback Tool into Drupal.
+ * Integrates the Usersnap Web Feedback Tool into Drupal.
  */
-
 
 
 /**
  * Provides a Configuration Form for entering the Usersnap API Key.
- *
- * The API Key can be obtained from http://www.usersnap.com.
- *
- * @param
- *
- * @return
  */
 function usersnap_admin() {
   $form = array();
-
   $form['usersnap_apikey'] = array(
     '#type' => 'textfield',
     '#title' => t('Enter the Usersnap API Key'),
@@ -30,26 +23,26 @@ function usersnap_admin() {
   return system_settings_form($form);
 }
 
-
-
+/**
+ * Implements hook_menu().
+ */
 function usersnap_menu() {
-
   $items = array();
-
   $items['admin/config/services/usersnap'] = array(
     'title' => 'Usersnap Settings',
     'description' => 'Enter yout Usersnap API Key to use the Web Feedback Service',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('usersnap_admin'),
     'access arguments' => array('administer site configuration'),
-//    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_NORMAL_ITEM,
     'weight' => 0,
   );
-
   return $items;
 }
 
-
+/**
+ * Implements hook_permission().
+ */
 function usersnap_permission() {
   return array(
     'usersnap' => array(
@@ -59,22 +52,22 @@ function usersnap_permission() {
   );
 }
 
-
-
-
-
+/**
+ * Implements hook_init().
+ */
 function usersnap_init() {
-global $user;
-if (user_access('usersnap')) {
-add_usersnap();
+  if (user_access('usersnap')) {
+    add_usersnap();
+  }
 }
 
-}
-
-
+/**
+ * Helper function to add usersnap widget to the current page.
+ */
 function add_usersnap() {
-$apikey=variable_get('usersnap_apikey', '');
-$js="var _usersnapconfig = {
+  $apikey = variable_get('usersnap_apikey', '');
+  $js = <<<'JS'
+var _usersnapconfig = {
 		apiKey: Drupal.settings.usersnap.apikey
 	};
 	(function() {
@@ -84,7 +77,17 @@ $js="var _usersnapconfig = {
 	    s.src = '//api.usersnap.com/usersnap.js';
 	    var x = document.getElementsByTagName('head')[0];
 	    x.appendChild(s);
-	})();";
-  drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
-  drupal_add_js(array('usersnap' => array('apikey' => $apikey)), 'setting');
-  }
+	})();
+JS;
+
+  drupal_add_js($js, array(
+    'type' => 'inline',
+    'scope' => 'footer',
+    'weight' => 5,
+  ));
+  drupal_add_js(array(
+    'usersnap' => array(
+      'apikey' => $apikey,
+    )
+  ), 'setting');
+}
