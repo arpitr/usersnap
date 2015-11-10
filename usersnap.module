@@ -5,24 +5,6 @@
  * Integrates the Usersnap Web Feedback Tool into Drupal.
  */
 
-
-/**
- * Provides a Configuration Form for entering the Usersnap API Key.
- */
-function usersnap_admin() {
-  $form = array();
-  $form['usersnap_apikey'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Enter the Usersnap API Key'),
-    '#default_value' => variable_get('usersnap_apikey', ''),
-    '#size' => 60,
-    '#maxlength' => 60,
-    '#description' => t("Enter the Usersnap API Key. You can get a Key at http://www.usersnap.com."),
-    '#required' => TRUE,
-  );
-  return system_settings_form($form);
-}
-
 /**
  * Implements hook_menu().
  */
@@ -31,6 +13,7 @@ function usersnap_menu() {
   $items['admin/config/services/usersnap'] = array(
     'title' => 'Usersnap Settings',
     'description' => 'Enter yout Usersnap API Key to use the Web Feedback Service',
+    'file' => 'usersnap.admin.inc',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('usersnap_admin'),
     'access arguments' => array('administer site configuration'),
