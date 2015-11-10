@@ -20,6 +20,13 @@ function usersnap_admin() {
     '#description' => t("Enter the Usersnap API Key. You can get a Key at http://www.usersnap.com."),
     '#required' => TRUE,
   );
+  $form['usersnap_button_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Widget button text'),
+    '#description' => t('Button text displayed on the Usersnap feedback widget'),
+    '#default_value' => variable_get('usersnap_button_text', 'Feedback'),
+    '#required' => TRUE,
+  );
   $form['usersnap_position'] = array(
     '#type' => 'select',
     '#title' => t('Widget position'),

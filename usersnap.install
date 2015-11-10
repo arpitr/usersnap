@@ -10,6 +10,7 @@
  */
 function usersnap_uninstall() {
   variable_del('usersnap_apikey');
+  variable_del('usersnap_button_text');
   variable_del('usersnap_position');
   variable_del('usersnap_language');
 }
