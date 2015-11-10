@@ -52,6 +52,9 @@ function add_usersnap() {
   $position = explode('_', variable_get('usersnap_position', 'bottom_right'));
   $language = variable_get('usersnap_language', 'en');
   $button_text = variable_get('usersnap_button_text', 'Feedback');
+  $show_cbox = variable_get('usersnap_show_comment_box', FALSE);
+  $cbox_placeholder = variable_get('usersnap_comment_box_placeholder', '');
+  $cbox_required = variable_get('usersnap_comment_box_required', FALSE);
 
   $js = <<<'JS'
 var _usersnapconfig = {
@@ -59,7 +62,10 @@ var _usersnapconfig = {
 		btnText: Drupal.settings.usersnap.button,
 		lang: Drupal.settings.usersnap.language,
 		valign: Drupal.settings.usersnap.valign,
-		halign: Drupal.settings.usersnap.halign
+		halign: Drupal.settings.usersnap.halign,
+		commentBox: Drupal.settings.usersnap.cbox,
+		commentBoxPlaceholder: Drupal.settings.usersnap.cplaceholder,
+		commentRequired: Drupal.settings.usersnap.crequired
 	};
 	(function() {
 	    var s = document.createElement('script');
@@ -83,6 +89,9 @@ JS;
       'button' => $button_text,
       'valign' => $position[0],
       'halign' => $position[1],
+      'cbox' => $show_cbox,
+      'cplaceholder' => $cbox_placeholder,
+      'crequired' => $cbox_required,
     )
   ), 'setting');
 }

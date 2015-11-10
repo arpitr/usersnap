@@ -13,4 +13,6 @@ function usersnap_uninstall() {
   variable_del('usersnap_button_text');
   variable_del('usersnap_position');
   variable_del('usersnap_language');
+  variable_del('usersnap_show_comment_box');
+  variable_del('usersnap_comment_box_required');
 }

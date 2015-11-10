@@ -46,6 +46,36 @@ function usersnap_admin() {
     '#default_value' => variable_get('usersnap_language', 'en'),
     '#options' => usersnap_supported_languages(),
   );
+  $form['usersnap_show_comment_box'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show comment box'),
+    '#default_value' => variable_get('usersnap_show_comment_box', FALSE),
+  );
+  $form['usersnap_comment_box_placeholder'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Comment box placeholder text'),
+    '#description' => t('Text shown to users in the comment box'),
+    '#default_value' => variable_get('usersnap_comment_box_placeholder', ''),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="usersnap_show_comment_box"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    )
+  );
+  $form['usersnap_comment_box_required'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Require comment'),
+    '#default_value' => variable_get('usersnap_comment_box_required', ''),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="usersnap_show_comment_box"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    )
+  );
   return system_settings_form($form);
 }
 
