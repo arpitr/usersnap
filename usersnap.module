@@ -39,9 +39,9 @@ function usersnap_permission() {
 }
 
 /**
- * Implements hook_init().
+ * Implements hook_preprocess_html().
  */
-function usersnap_init() {
+function usersnap_preprocess_html() {
   // @see block_block_list_alter()
   $visibility = variable_get('usersnap_visibility', USERSNAP_VISIBILITY_NOTLISTED);
   $paths = strtolower(variable_Get('usersnap_paths', ''));
@@ -53,14 +53,14 @@ function usersnap_init() {
   $show_on_this_page = !($visibility xor $page_match);
 
   if (user_access('usersnap') && $show_on_this_page) {
-    add_usersnap();
+    usersnap_add_usersnap();
   }
 }
 
 /**
  * Helper function to add usersnap widget to the current page.
  */
-function add_usersnap() {
+function usersnap_add_usersnap() {
   $apikey = variable_get('usersnap_apikey', '');
   $position = explode('_', variable_get('usersnap_position', 'bottom_right'));
   $language = variable_get('usersnap_language', 'en');
