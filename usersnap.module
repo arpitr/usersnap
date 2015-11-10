@@ -50,10 +50,12 @@ function usersnap_init() {
 function add_usersnap() {
   $apikey = variable_get('usersnap_apikey', '');
   $position = explode('_', variable_get('usersnap_position', 'bottom_right'));
+  $language = variable_get('usersnap_language', 'en');
 
   $js = <<<'JS'
 var _usersnapconfig = {
 		apiKey: Drupal.settings.usersnap.apikey,
+		lang: Drupal.settings.usersnap.language,
 		valign: Drupal.settings.usersnap.valign,
 		halign: Drupal.settings.usersnap.halign
 	};
@@ -75,6 +77,7 @@ JS;
   drupal_add_js(array(
     'usersnap' => array(
       'apikey' => $apikey,
+      'language' => $language,
       'valign' => $position[0],
       'halign' => $position[1],
     )

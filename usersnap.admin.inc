@@ -32,5 +32,44 @@ function usersnap_admin() {
       'middle_left' => t('Middle left'),
     ),
   );
+  $form['usersnap_language'] = array(
+    '#type' => 'select',
+    '#title' => t('Widget language'),
+    '#description' => t('Preferred interface language for feedback widget.'),
+    '#default_value' => variable_get('usersnap_language', 'en'),
+    '#options' => usersnap_supported_languages(),
+  );
   return system_settings_form($form);
+}
+
+/**
+ * Helper function to return Usersnap supported languages and language codes.
+ *
+ * @see https://usersnap.com/docs#language
+ */
+function usersnap_supported_languages() {
+  return array(
+    'en' => t('English'),
+    'de-informal' => t('German (informal)'),
+    'de-formal' => t('German (formal)'),
+    'fr' => t('French'),
+    'es' => t('Spanish'),
+    'pl' => t('Polish'),
+    'fa' => t('Farsi'),
+    'is' => t('Icelandic'),
+    'jp' => t('Japanese'),
+    'it' => t('Italian'),
+    'hu' => t('Hungarian'),
+    'ko' => t('Korean'),
+    'cz' => t('Czech'),
+    'da' => t('Danish'),
+    'no' => t('Norwegian'),
+    'sk' => t('Slovakian'),
+    'nl' => t('Dutch'),
+    'sv' => t('Swedish'),
+    'pt' => t('Portuguese'),
+    'fi' => t('Finnish'),
+    'ru' => t('Russian'),
+    'tr' => t('Turkish'),
+  );
 }
