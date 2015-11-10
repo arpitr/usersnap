@@ -4,6 +4,7 @@ Usersnap
 This Drupal module integrates the [Usersnap][] feedback widget with your Drupal
 website. Before you install, be sure you have a Usersnap account and API key.
 
+
 ### Installation instructions
 
 Install and enable this module [like you would any other module][]. Once you've
@@ -14,6 +15,7 @@ This module also exposes an "access usersnap" permission, which you can grant to
 specific roles that you want to have access to the Usersnap feedback widget. You
 may even wish to grant this permission to the "anonymous user" role to allow any
 website visitor to send feedback through Usersnap.
+
 
 ### Exposed configurations
 
@@ -51,5 +53,18 @@ feedback widget. If you choose to include it, you can provide placeholder text
 and choose to require the field.
 
 
+### Multilingual support
+
+This module supports several types of multilingual websites. For sites that only
+support a single language, but the language is something other than English, the
+widget interface language can be configured to any language supported by
+Usersnap. Other user-facing strings can be configured using the desired language
+as well.
+
+For sites that are available in multiple languages, this module integrates with
+the [i18n Variable module][], which supports multilingual configuration.
+
+
 [Usersnap]: https://www.usersnap.com
 [like you would any other module]: https://www.drupal.org/documentation/install/modules-themes/modules-7
+[i18n Variable module]: https://www.drupal.org/project/i18n
