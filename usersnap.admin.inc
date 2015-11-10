@@ -27,6 +27,25 @@ function usersnap_admin() {
     '#default_value' => variable_get('usersnap_button_text', 'Feedback'),
     '#required' => TRUE,
   );
+  $form['usersnap_visibility'] = array(
+    '#type' => 'radios',
+    '#title' => t('Show widget on specific pages'),
+    '#default_value' => variable_get('usersnap_visibility', USERSNAP_VISIBILITY_NOTLISTED),
+    '#options' => array(
+      USERSNAP_VISIBILITY_NOTLISTED => t('All pages except those listed'),
+      USERSNAP_VISIBILITY_LISTED => t('Only the listed pages'),
+    ),
+  );
+  $form['usersnap_paths'] = array(
+    '#type' => 'textarea',
+    '#title' => '',
+    '#description' => t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array(
+      '%blog' => 'blog',
+      '%blog-wildcard' => 'blog/*',
+      '%front' => '<front>')
+    ),
+    '#default_value' => variable_get('usersnap_paths', ''),
+  );
   $form['usersnap_position'] = array(
     '#type' => 'select',
     '#title' => t('Widget position'),
