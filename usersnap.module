@@ -55,6 +55,9 @@ function add_usersnap() {
   $show_cbox = variable_get('usersnap_show_comment_box', FALSE);
   $cbox_placeholder = variable_get('usersnap_comment_box_placeholder', '');
   $cbox_required = variable_get('usersnap_comment_box_required', FALSE);
+  $show_email = variable_get('usersnap_show_email_field', FALSE);
+  $email_placeholder = variable_get('usersnap_email_field_placeholder', '');
+  $email_required = variable_get('usersnap_email_field_required', FALSE);
 
   $js = <<<'JS'
 var _usersnapconfig = {
@@ -63,6 +66,9 @@ var _usersnapconfig = {
 		lang: Drupal.settings.usersnap.language,
 		valign: Drupal.settings.usersnap.valign,
 		halign: Drupal.settings.usersnap.halign,
+		emailBox: Drupal.settings.usersnap.email,
+		emailBoxPlaceholder: Drupal.settings.usersnap.eplaceholder,
+		emailRequired: Drupal.settings.usersnap.erequired,
 		commentBox: Drupal.settings.usersnap.cbox,
 		commentBoxPlaceholder: Drupal.settings.usersnap.cplaceholder,
 		commentRequired: Drupal.settings.usersnap.crequired
@@ -92,6 +98,9 @@ JS;
       'cbox' => $show_cbox,
       'cplaceholder' => $cbox_placeholder,
       'crequired' => $cbox_required,
+      'email' => $show_email,
+      'eplaceholder' => $email_placeholder,
+      'erequired' => $email_required,
     )
   ), 'setting');
 }

@@ -46,6 +46,36 @@ function usersnap_admin() {
     '#default_value' => variable_get('usersnap_language', 'en'),
     '#options' => usersnap_supported_languages(),
   );
+  $form['usersnap_show_email_field'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show e-mail field'),
+    '#default_value' => variable_get('usersnap_show_email_field', FALSE),
+  );
+  $form['usersnap_email_field_placeholder'] = array(
+    '#type' => 'textfield',
+    '#title' => t('E-mail field placeholder text'),
+    '#description' => t('Placeholder text shown to users in the e-mail field'),
+    '#default_value' => variable_get('usersnap_email_field_placeholder', ''),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="usersnap_show_email_field"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    )
+  );
+  $form['usersnap_email_field_required'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Require e-mail'),
+    '#default_value' => variable_get('usersnap_email_field_required', ''),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="usersnap_show_email_field"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    )
+  );
   $form['usersnap_show_comment_box'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show comment box'),
