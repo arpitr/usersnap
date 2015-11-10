@@ -49,9 +49,13 @@ function usersnap_init() {
  */
 function add_usersnap() {
   $apikey = variable_get('usersnap_apikey', '');
+  $position = explode('_', variable_get('usersnap_position', 'bottom_right'));
+
   $js = <<<'JS'
 var _usersnapconfig = {
-		apiKey: Drupal.settings.usersnap.apikey
+		apiKey: Drupal.settings.usersnap.apikey,
+		valign: Drupal.settings.usersnap.valign,
+		halign: Drupal.settings.usersnap.halign
 	};
 	(function() {
 	    var s = document.createElement('script');
@@ -71,6 +75,8 @@ JS;
   drupal_add_js(array(
     'usersnap' => array(
       'apikey' => $apikey,
+      'valign' => $position[0],
+      'halign' => $position[1],
     )
   ), 'setting');
 }

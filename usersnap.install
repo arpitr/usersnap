@@ -9,6 +9,6 @@
  * Implements hook_uninstall().
  */
 function usersnap_uninstall() {
-  // Remove the usersnap variable which is defined in our module
   variable_del('usersnap_apikey');
+  variable_del('usersnap_position');
 }
