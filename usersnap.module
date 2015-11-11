@@ -44,7 +44,7 @@ function usersnap_permission() {
 function usersnap_preprocess_html() {
   // @see block_block_list_alter()
   $visibility = variable_get('usersnap_visibility', USERSNAP_VISIBILITY_NOTLISTED);
-  $paths = strtolower(variable_Get('usersnap_paths', ''));
+  $paths = strtolower(variable_get('usersnap_paths', ''));
   $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
   $page_match = drupal_match_path($path, $paths);
   if ($path != $_GET['q']) {
@@ -96,11 +96,6 @@ var _usersnapconfig = {
 	})();
 JS;
 
-  drupal_add_js($js, array(
-    'type' => 'inline',
-    'scope' => 'footer',
-    'weight' => 5,
-  ));
   drupal_add_js(array(
     'usersnap' => array(
       'apikey' => $apikey,
@@ -116,4 +111,8 @@ JS;
       'erequired' => $email_required,
     )
   ), 'setting');
+  drupal_add_js($js, array(
+    'type' => 'inline',
+    'scope' => 'footer',
+  ));
 }
