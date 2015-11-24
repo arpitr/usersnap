@@ -72,28 +72,29 @@ function usersnap_add_usersnap() {
   $email_placeholder = variable_get('usersnap_email_field_placeholder', '');
   $email_required = variable_get('usersnap_email_field_required', FALSE);
 
-  $js = <<<'JS'
+  $js = <<<JS
 var _usersnapconfig = {
-		apiKey: Drupal.settings.usersnap.apikey,
-		btnText: Drupal.settings.usersnap.button,
-		lang: Drupal.settings.usersnap.language,
-		valign: Drupal.settings.usersnap.valign,
-		halign: Drupal.settings.usersnap.halign,
-		emailBox: Drupal.settings.usersnap.email,
-		emailBoxPlaceholder: Drupal.settings.usersnap.eplaceholder,
-		emailRequired: Drupal.settings.usersnap.erequired,
-		commentBox: Drupal.settings.usersnap.cbox,
-		commentBoxPlaceholder: Drupal.settings.usersnap.cplaceholder,
-		commentRequired: Drupal.settings.usersnap.crequired
-	};
-	(function() {
-	    var s = document.createElement('script');
-	    s.type = 'text/javascript';
-	    s.async = true;
-	    s.src = '//api.usersnap.com/usersnap.js';
-	    var x = document.getElementsByTagName('head')[0];
-	    x.appendChild(s);
-	})();
+      apiKey: Drupal.settings.usersnap.apikey,
+      btnText: Drupal.settings.usersnap.button,
+      lang: Drupal.settings.usersnap.language,
+      valign: Drupal.settings.usersnap.valign,
+      halign: Drupal.settings.usersnap.halign,
+      emailBox: Drupal.settings.usersnap.email,
+      emailBoxPlaceholder: Drupal.settings.usersnap.eplaceholder,
+      emailRequired: Drupal.settings.usersnap.erequired,
+      commentBox: Drupal.settings.usersnap.cbox,
+      commentBoxPlaceholder: Drupal.settings.usersnap.cplaceholder,
+      commentRequired: Drupal.settings.usersnap.crequired
+    };
+
+(function() {
+  var s = document.createElement('script'),
+      x = document.getElementsByTagName('script')[0];
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//api.usersnap.com/load/$apikey.js';
+  x.parentNode.insertBefore(s, x);
+})();
 JS;
 
   drupal_add_js(array(
