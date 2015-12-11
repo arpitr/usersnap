@@ -97,21 +97,32 @@ var _usersnapconfig = {
 })();
 JS;
 
-  drupal_add_js(array(
+  $settings_object = array(
     'usersnap' => array(
       'apikey' => $apikey,
       'language' => $language,
       'button' => $button_text,
       'valign' => $position[0],
       'halign' => $position[1],
-      'cbox' => $show_cbox,
-      'cplaceholder' => $cbox_placeholder,
-      'crequired' => $cbox_required,
-      'email' => $show_email,
-      'eplaceholder' => $email_placeholder,
-      'erequired' => $email_required,
-    )
-  ), 'setting');
+      'cbox' => (bool) $show_cbox,
+      'crequired' => (bool) $cbox_required,
+      'email' => (bool) $show_email,
+      'erequired' => (bool) $email_required,
+    ),
+  );
+
+  // If a comment box placeholder text is configured, add it.
+  if (!empty($cbox_placeholder)) {
+    $settings_object['usersnap']['cplaceholder'] = $cbox_placeholder;
+  }
+
+  // If an email placeholder text is configured, add it.
+  if (!empty($email_placeholder)) {
+    $settings_object['usersnap']['eplaceholder'] = $email_placeholder;
+  }
+
+  // Add global settings and scripts to the page.
+  drupal_add_js($settings_object, 'setting');
   drupal_add_js($js, array(
     'type' => 'inline',
     'scope' => 'footer',
