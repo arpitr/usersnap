@@ -92,7 +92,7 @@ class UsersnapSettingsForm extends ConfigFormBase {
     $form['usersnap_show_email_field'] = array(
       '#type' => 'checkbox',
       '#title' => t('Show e-mail field'),
-      '#default_value' => $admin_configurations->get('usersnap_language') ? $admin_configurations->get('usersnap_language') : FALSE,
+      '#default_value' => $admin_configurations->get('usersnap_show_email_field') ? $admin_configurations->get('usersnap_show_email_field') : FALSE,
     );
     $form['usersnap_email_field_placeholder'] = array(
       '#type' => 'textfield',
