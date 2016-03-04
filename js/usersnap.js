@@ -1,6 +1,6 @@
 (function ($, Drupal, drupalSettings) {
 
-  var _usersnapconfig = {
+   _usersnapconfig = {
     apiKey: drupalSettings.usersnap.apikey,
     btnText: drupalSettings.usersnap.button,
     lang: drupalSettings.usersnap.language,
@@ -13,7 +13,7 @@
     commentBoxPlaceholder: drupalSettings.usersnap.cplaceholder,
     commentRequired: drupalSettings.usersnap.crequired
   };
-  console.log(_usersnapconfig);
+  
   var s = document.createElement('script'),
       x = document.getElementsByTagName('script')[0];
   s.type = 'text/javascript';
