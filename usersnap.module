@@ -28,9 +28,11 @@ function usersnap_page_attachments_alter(&$page) {
   $visibility = $config->get('usersnap_visibility') ? $config->get('usersnap_visibility') : USERSNAP_VISIBILITY_NOTLISTED;
   $paths = $config->get('usersnap_paths') ? $config->get('usersnap_paths') : '';
   $paths = strtolower($paths);
-  $path = Drupal\Component\Utility\Unicode::strtolower(\Drupal::service('path.alias_manager')->getAliasByPath('/' . $_GET['q']));
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  $path = trim($path, '/');
   $page_match = \Drupal::service('path.matcher')->matchPath($path, $paths);
-  if ($path != $_GET['q']) {
+  if (isset($_GET['q']) && $path != $_GET['q']) {
     $page_match = $page_match || \Drupal::service('path.matcher')->matchPath($_GET['q'], $paths);
   }
   $show_on_this_page = !($visibility xor $page_match);
